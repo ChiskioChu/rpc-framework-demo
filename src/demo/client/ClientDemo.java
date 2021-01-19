@@ -10,6 +10,8 @@ public class ClientDemo {
         CalculatorService calculatorService = rpcClient.refer(CalculatorService.class, "127.0.0.1", 1234);
         int result = calculatorService.add(1, 2);
         System.out.println(result);
+        PrintService printService = rpcClient.refer(PrintService.class, "127.0.0.1", 1234);
+        System.out.println(printService.print(5, 3));
     }
 
 }

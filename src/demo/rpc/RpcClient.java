@@ -37,9 +37,11 @@ public class RpcClient {
                 try {
                     ObjectOutputStream objectOutputStream = new ObjectOutputStream(socket.getOutputStream());
                     try {
+                        objectOutputStream.writeUTF(interfaceClass.getCanonicalName());
                         objectOutputStream.writeUTF(method.getName());
                         objectOutputStream.writeObject(method.getParameterTypes());
                         objectOutputStream.writeObject(args);
+                        objectOutputStream.flush();
                         ObjectInputStream objectInputStream = new ObjectInputStream(socket.getInputStream());
                         try {
                             Object result = objectInputStream.readObject();

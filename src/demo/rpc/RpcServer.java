@@ -1,52 +1,45 @@
 package demo.rpc;
 
+import demo.registry.ServiceRegistry;
+
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.lang.reflect.Method;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.util.concurrent.*;
 
 /**
  * 把服务和端口进行绑定
  * */
 public class RpcServer {
-    public void export(Object service, int port) throws IOException {
-        if (service == null) {
-            throw new IllegalArgumentException("service instance == null");
-        }
+
+    private static final int CORE_POOL_SIZE = 5;
+    private static final int MAXIMUM_POOL_SIZE = 50;
+    private static final int KEEP_ALIVE_TIME = 60;
+    private static final int BLOCKING_QUEUE_CAPACITY = 100;
+    private final ExecutorService threadPool;
+    private final ServiceRegistry serviceRegistry;
+
+    public RpcServer(ServiceRegistry serviceRegistry) {
+        this.serviceRegistry = serviceRegistry;
+        BlockingQueue<Runnable> workingQueue = new ArrayBlockingQueue<>(BLOCKING_QUEUE_CAPACITY);
+        ThreadFactory threadFactory = Executors.defaultThreadFactory();
+        threadPool = new ThreadPoolExecutor(CORE_POOL_SIZE, MAXIMUM_POOL_SIZE, KEEP_ALIVE_TIME, TimeUnit.SECONDS, workingQueue, threadFactory);
+    }
+
+    public void start(int port) throws IOException {
         if (port <= 0 || port > 65535) {
             throw new IllegalArgumentException("Invalid port " + port);
         }
 
         ServerSocket serverSocket = new ServerSocket(port);
-        while(true){
-            final Socket socket = serverSocket.accept();
-            new Thread(new Runnable() {
-                @Override
-                public void run() {
-                    try {
-                        ObjectOutputStream objectOutputStream = new ObjectOutputStream(socket.getOutputStream());
-                        ObjectInputStream objectInputStream = new ObjectInputStream(socket.getInputStream());
-                        try {
-                            String methodName = objectInputStream.readUTF();
-                            Class<?>[] parameterTypes = (Class<?>[]) objectInputStream.readObject();
-                            Object[] arguments = (Object[]) objectInputStream.readObject();
-                            Method method = service.getClass().getMethod(methodName, parameterTypes);
-                            Object result = method.invoke(service, arguments);
-                            objectOutputStream.writeObject(result);
-                        } catch (Throwable t) {
-                            objectOutputStream.writeObject(t);
-                        } finally {
-                          objectOutputStream.close();
-                          objectInputStream.close();
-                          socket.close();
-                        }
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-                }
-            }).start();
+        System.out.print("服务端启动在：" + port + "端口\n");
+        Socket socket;
+        while((socket = serverSocket.accept()) != null){
+            threadPool.execute(new RequestHandlerThread(socket, serviceRegistry)); // 处理请求提交
         }
+        threadPool.shutdown();
     }
 }
