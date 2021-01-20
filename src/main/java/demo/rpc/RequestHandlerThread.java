@@ -1,5 +1,7 @@
 package demo.rpc;
 
+import demo.dto.RpcRequest;
+import demo.dto.RpcResponse;
 import demo.registry.ServiceRegistry;
 
 import java.io.IOException;
@@ -24,17 +26,16 @@ public class RequestHandlerThread implements Runnable {
             ObjectOutputStream objectOutputStream = new ObjectOutputStream(socket.getOutputStream());
             ObjectInputStream objectInputStream = new ObjectInputStream(socket.getInputStream());
             try {
-                String interfaceName =  objectInputStream.readUTF();
-                String methodName = objectInputStream.readUTF();
-                Class<?>[] parameterTypes = (Class<?>[]) objectInputStream.readObject();
-                Object[] arguments = (Object[]) objectInputStream.readObject();
+                RpcRequest rpcRequest = (RpcRequest) objectInputStream.readObject();
+                String interfaceName = rpcRequest.getInterfaceName();
                 Object service = serviceRegistry.getService(interfaceName);
                 if (service == null) {
                     throw new IllegalArgumentException("service instance == null");
                 }
-                Method method = service.getClass().getMethod(methodName, parameterTypes);
-                Object result = method.invoke(service, arguments);
-                objectOutputStream.writeObject(result);
+
+                Method method = service.getClass().getMethod(rpcRequest.getMethodName(), rpcRequest.getParamTypes());
+                Object returnObject = method.invoke(service, rpcRequest.getParameters());
+                objectOutputStream.writeObject(RpcResponse.success(returnObject));
                 objectOutputStream.flush();
             } catch (Throwable t) {
                 objectOutputStream.writeObject(t);

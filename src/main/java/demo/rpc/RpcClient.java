@@ -1,6 +1,8 @@
 package demo.rpc;
 
-import java.io.InputStream;
+import demo.dto.RpcRequest;
+import demo.dto.RpcResponse;
+
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.lang.reflect.InvocationHandler;
@@ -33,14 +35,17 @@ public class RpcClient {
         return (T) Proxy.newProxyInstance(interfaceClass.getClassLoader(), new Class<?>[]{interfaceClass}, new InvocationHandler() {
             @Override
             public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
+                RpcRequest rpcRequest = RpcRequest.builder()
+                        .interfaceName(interfaceClass.getCanonicalName())
+                        .methodName(method.getName())
+                        .parameters(args)
+                        .paramTypes(method.getParameterTypes())
+                        .build();
                 Socket socket = new Socket(host, port);
                 try {
                     ObjectOutputStream objectOutputStream = new ObjectOutputStream(socket.getOutputStream());
                     try {
-                        objectOutputStream.writeUTF(interfaceClass.getCanonicalName());
-                        objectOutputStream.writeUTF(method.getName());
-                        objectOutputStream.writeObject(method.getParameterTypes());
-                        objectOutputStream.writeObject(args);
+                        objectOutputStream.writeObject(rpcRequest);
                         objectOutputStream.flush();
                         ObjectInputStream objectInputStream = new ObjectInputStream(socket.getInputStream());
                         try {
@@ -48,7 +53,7 @@ public class RpcClient {
                             if (result instanceof Throwable) {
                                 throw (Throwable) result;
                             }
-                            return result;
+                            return ((RpcResponse)result).getData();
                         } finally {
                             objectInputStream.close();
                         }
