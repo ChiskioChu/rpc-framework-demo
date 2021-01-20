@@ -24,4 +24,15 @@ public class RpcRequest implements Serializable {
      * 调用方法的参数类型
      */
     private Class<?>[] paramTypes;
+
+    public RpcRequest() {} // 序列化一定要有无参构造
+
+    public RpcRequest(String interfaceName, String methodName, Object[] parameters, Class<?>[] paramTypes) {
+        this.interfaceName = interfaceName;
+        this.methodName = methodName;
+        this.parameters = parameters;
+        this.paramTypes = paramTypes;
+    }
+
+
 }
