@@ -23,33 +23,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ac9ebb11-41b1-4197-b87f-aecdfaa0aa61" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/demo/exception/RpcException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/demo/exception/SerializeException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/demo/netty/NettyClient.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/demo/netty/NettyServer.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/demo/netty/handler/CommonDecoder.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/demo/netty/handler/CommonEncoder.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/demo/netty/handler/NettyClientHandler.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/demo/netty/handler/NettyServerHandler.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/demo/netty/serializer/CommonSerializer.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/demo/netty/serializer/JsonSerializer.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/demo/proxy/RpcClientProxy.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/demo/netty/serializer/KryoSerializer.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/demo/client/ClientDemo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/demo/client/ClientDemo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/demo/dto/RpcRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/demo/dto/RpcRequest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/demo/registry/DefaultServiceRegistry.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/demo/registry/DefaultServiceRegistry.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/demo/rpc/RequestHandlerThread.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/demo/rpc/RpcClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/demo/rpc/RpcClient.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/demo/rpc/RpcServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/demo/rpc/RpcServer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/demo/server/RpcServerApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/demo/server/RpcServerApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/demo/client/ClientDemo.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/demo/client/ClientDemo.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/demo/dto/RpcRequest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/demo/dto/RpcRequest.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/demo/registry/DefaultServiceRegistry.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/demo/registry/DefaultServiceRegistry.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/demo/rpc/RequestHandlerThread.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/demo/rpc/RpcClient$1.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/demo/rpc/RpcClient.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/demo/rpc/RpcClient.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/demo/rpc/RpcServer.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/demo/rpc/RpcServer.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/demo/server/RpcServerApplication.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/demo/server/RpcServerApplication.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/demo/netty/serializer/CommonSerializer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/demo/netty/serializer/CommonSerializer.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -97,7 +73,7 @@
       <recent name="$PROJECT_DIR$/src/main/java/demo" />
     </key>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Application.ClientDemo (1)">
     <configuration name="ClientDemo (1)" type="Application" factoryName="Application" singleton="false" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="demo.client.ClientDemo" />
       <module name="rpc-framework-demo" />
@@ -111,13 +87,28 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
+    <configuration name="RpcServerApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="demo.server.RpcServerApplication" />
+      <module name="rpc-framework-demo" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="demo.server.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="ArquillianTestNG" factoryName="" nameIsGenerated="true">
       <option name="arquillianRunConfiguration">
         <value>
           <option name="containerStateName" value="" />
         </value>
       </option>
-      <option name="TEST_OBJECT" value="class" />
+      <option name="TEST_OBJECT" value="CLASS" />
+      <properties />
+      <listeners />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -125,6 +116,7 @@
     <recent_temporary>
       <list>
         <item itemvalue="Application.ClientDemo (1)" />
+        <item itemvalue="Application.RpcServerApplication" />
       </list>
     </recent_temporary>
   </component>
@@ -138,7 +130,8 @@
       <updated>1611034883543</updated>
       <workItem from="1611034885738" duration="9572000" />
       <workItem from="1611059124983" duration="280000" />
-      <workItem from="1611110506376" duration="15765000" />
+      <workItem from="1611110506376" duration="15905000" />
+      <workItem from="1611193387072" duration="6739000" />
     </task>
     <servers />
   </component>
@@ -166,10 +159,10 @@
       <screen x="0" y="23" width="1920" height="993" />
     </state>
     <state x="424" y="181" width="1071" height="724" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.23.1920.993@0.23.1920.993" timestamp="1611129950877" />
-    <state x="1180" y="233" key="#com.intellij.ide.util.MemberChooser" timestamp="1611127846039">
+    <state x="1180" y="233" key="#com.intellij.ide.util.MemberChooser" timestamp="1611231972573">
       <screen x="0" y="23" width="1920" height="993" />
     </state>
-    <state x="1180" y="233" key="#com.intellij.ide.util.MemberChooser/0.23.1920.993@0.23.1920.993" timestamp="1611127846039" />
+    <state x="1180" y="233" key="#com.intellij.ide.util.MemberChooser/0.23.1920.993@0.23.1920.993" timestamp="1611231972573" />
     <state x="913" y="228" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1611112647834">
       <screen x="0" y="23" width="1920" height="993" />
     </state>
@@ -178,38 +171,38 @@
       <screen x="0" y="23" width="1920" height="993" />
     </state>
     <state x="1106" y="273" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.23.1920.993@0.23.1920.993" timestamp="1611114287007" />
-    <state width="1878" height="269" key="GridCell.Tab.0.bottom" timestamp="1611129978350">
+    <state width="1878" height="269" key="GridCell.Tab.0.bottom" timestamp="1611143714031">
       <screen x="0" y="23" width="1920" height="993" />
     </state>
-    <state width="1878" height="269" key="GridCell.Tab.0.bottom/0.23.1920.993@0.23.1920.993" timestamp="1611129978350" />
-    <state width="1878" height="269" key="GridCell.Tab.0.center" timestamp="1611129978347">
+    <state width="1878" height="269" key="GridCell.Tab.0.bottom/0.23.1920.993@0.23.1920.993" timestamp="1611143714031" />
+    <state width="1878" height="269" key="GridCell.Tab.0.center" timestamp="1611143714031">
       <screen x="0" y="23" width="1920" height="993" />
     </state>
-    <state width="1878" height="269" key="GridCell.Tab.0.center/0.23.1920.993@0.23.1920.993" timestamp="1611129978347" />
-    <state width="1878" height="269" key="GridCell.Tab.0.left" timestamp="1611129978346">
+    <state width="1878" height="269" key="GridCell.Tab.0.center/0.23.1920.993@0.23.1920.993" timestamp="1611143714031" />
+    <state width="1878" height="269" key="GridCell.Tab.0.left" timestamp="1611143714031">
       <screen x="0" y="23" width="1920" height="993" />
     </state>
-    <state width="1878" height="269" key="GridCell.Tab.0.left/0.23.1920.993@0.23.1920.993" timestamp="1611129978346" />
-    <state width="1878" height="269" key="GridCell.Tab.0.right" timestamp="1611129978349">
+    <state width="1878" height="269" key="GridCell.Tab.0.left/0.23.1920.993@0.23.1920.993" timestamp="1611143714031" />
+    <state width="1878" height="269" key="GridCell.Tab.0.right" timestamp="1611143714031">
       <screen x="0" y="23" width="1920" height="993" />
     </state>
-    <state width="1878" height="269" key="GridCell.Tab.0.right/0.23.1920.993@0.23.1920.993" timestamp="1611129978349" />
-    <state width="1062" height="332" key="GridCell.Tab.1.bottom" timestamp="1611127613031">
+    <state width="1878" height="269" key="GridCell.Tab.0.right/0.23.1920.993@0.23.1920.993" timestamp="1611143714031" />
+    <state width="1062" height="332" key="GridCell.Tab.1.bottom" timestamp="1611143714024">
       <screen x="0" y="23" width="1920" height="993" />
     </state>
-    <state width="1062" height="332" key="GridCell.Tab.1.bottom/0.23.1920.993@0.23.1920.993" timestamp="1611127613031" />
-    <state width="1062" height="332" key="GridCell.Tab.1.center" timestamp="1611127613029">
+    <state width="1062" height="332" key="GridCell.Tab.1.bottom/0.23.1920.993@0.23.1920.993" timestamp="1611143714024" />
+    <state width="1062" height="332" key="GridCell.Tab.1.center" timestamp="1611143714023">
       <screen x="0" y="23" width="1920" height="993" />
     </state>
-    <state width="1062" height="332" key="GridCell.Tab.1.center/0.23.1920.993@0.23.1920.993" timestamp="1611127613029" />
-    <state width="1062" height="332" key="GridCell.Tab.1.left" timestamp="1611127613028">
+    <state width="1062" height="332" key="GridCell.Tab.1.center/0.23.1920.993@0.23.1920.993" timestamp="1611143714023" />
+    <state width="1062" height="332" key="GridCell.Tab.1.left" timestamp="1611143714023">
       <screen x="0" y="23" width="1920" height="993" />
     </state>
-    <state width="1062" height="332" key="GridCell.Tab.1.left/0.23.1920.993@0.23.1920.993" timestamp="1611127613028" />
-    <state width="1062" height="332" key="GridCell.Tab.1.right" timestamp="1611127613030">
+    <state width="1062" height="332" key="GridCell.Tab.1.left/0.23.1920.993@0.23.1920.993" timestamp="1611143714023" />
+    <state width="1062" height="332" key="GridCell.Tab.1.right" timestamp="1611143714024">
       <screen x="0" y="23" width="1920" height="993" />
     </state>
-    <state width="1062" height="332" key="GridCell.Tab.1.right/0.23.1920.993@0.23.1920.993" timestamp="1611127613030" />
+    <state width="1062" height="332" key="GridCell.Tab.1.right/0.23.1920.993@0.23.1920.993" timestamp="1611143714024" />
     <state x="1108" y="246" width="758" height="587" key="NewModule_or_Project.wizard" timestamp="1611113085793">
       <screen x="0" y="23" width="1920" height="993" />
     </state>
